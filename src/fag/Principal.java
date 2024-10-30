@@ -93,7 +93,7 @@ public class Principal {
 		listarQuartos.add(quarto);
 		
 		System.out.println("Quarto cadastrado com sucesso!");
-		
+		menuPrincipal();
 	}
 	
 	public static void cadastrarReserva() {
@@ -168,6 +168,7 @@ public class Principal {
 	        System.out.println("ERRO- Digite uma opção válida.");
 	        gerenciarCheck();
 	    }
+	    
 	}
 
 	public static void realizarCheckIn() {
@@ -186,10 +187,11 @@ public class Principal {
 	    Quarto quarto = encontrarQuartoPorNumero (numeroQuarto);
 	    if (quarto != null && !quarto.getDisponibilidade()) {
 	        System.out.println("Check-in realizado com sucesso no quarto " + numeroQuarto);
-	        quarto.setDisponibilidade(true); 
+	        quarto.setDisponibilidade(false); 
 	    } else {
 	        System.out.println("Quarto não encontrado ou já ocupado.");
 	    }
+	    menuPrincipal();
 	}
 
 	public static void realizarCheckOut() {
@@ -212,6 +214,7 @@ public class Principal {
 	    } else {
 	        System.out.println("Quarto não encontrado ou já está livre.");
 	    }
+	    menuPrincipal();
 	}
 
 	public static Hóspede encontrarHospedePorNome(String nome) {
@@ -242,6 +245,9 @@ public class Principal {
 	            System.out.println("Data de saída: " + reserva.getDataSaida());
 	            System.out.println("Quartos ocupados:");
 
+	            LocalDate dataEntrada;
+	            LocalDate dataSaida;
+	            
 	            
 	            for (Quarto quarto : reserva.getQuartosReservados()) {
 	                System.out.println("Número do quarto: " + quarto.getNumQuarto() + 
